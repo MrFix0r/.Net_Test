@@ -7,6 +7,7 @@ namespace TestWebApp.Models
 {
     public class TodoItem
     {
+        //TODO переименовать поля необходимые для хранения эмейлов
         public long Id { get; set; }
         public string Name { get; set; }
         public bool IsComplete { get; set; }

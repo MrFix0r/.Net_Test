@@ -11,3 +11,17 @@ c:\users\admin\source\repos\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWe
 c:\users\admin\source\repos\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.RazorTargetAssemblyInfo.cache
 c:\users\admin\source\repos\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.dll
 c:\users\admin\source\repos\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.pdb
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.csprojAssemblyReference.cache
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.RazorAssemblyInfo.cache
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.RazorAssemblyInfo.cs
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.AssemblyInfoInputs.cache
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.AssemblyInfo.cs
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\TestWebApp.RazorTargetAssemblyInfo.cache
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\bin\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.deps.json
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\bin\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.runtimeconfig.json
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\bin\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.runtimeconfig.dev.json
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\bin\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.dll
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\bin\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.pdb
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.dll
+C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\obj\Debug\netcoreapp2.1\DataAccessPostgreSqlProvider.pdb

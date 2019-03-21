@@ -22,6 +22,16 @@ namespace TestWebApp
         {
             services.AddDbContext<TodoContext>(opt =>
                 opt.UseInMemoryDatabase("TodoList"));
+
+
+            //добавление привязки к БД PostgreSQL
+            //services.AddDbContext<TodoContext>(opt =>
+            //    opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddIdentity<User, IdentityRole<long>>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext, long>()
+            //    .AddDefaultTokenProviders();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

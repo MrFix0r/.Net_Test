@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +9,13 @@ using TestWebApp.Services;
 
 namespace TestWebApp.Controllers
 {
-    //[Route("api/[controller]")]
+
     [Route("api/mails")]
     [ApiController]
     public class EmailsController : ControllerBase
     {
         private IConfiguration _configuration;
+        private readonly MailContext _context;
         EmailService emailService;
 
         public EmailsController(IConfiguration Configuration, MailContext context)
@@ -24,13 +24,6 @@ namespace TestWebApp.Controllers
             _context = context;
             emailService = new EmailService(_configuration);
         }
-
-        private readonly MailContext _context;
-
-        //public EmailsController(MailContext context)
-        //{
-        //    _context = context;
-        //}
 
         // GET api/mails
         [HttpGet]

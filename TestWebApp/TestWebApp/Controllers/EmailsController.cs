@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TestWebApp.Models;
 using TestWebApp.Services;
 
@@ -17,25 +18,17 @@ namespace TestWebApp.Controllers
 
         private readonly MailContext _context;
 
+        public EmailsController(MailContext context)
+        {
+            _context = context;
+        }
+
         // GET api/mails
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<Email>>> GetAllEmails()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.Emails.ToListAsync();
         }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/mails
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
 
         // POST api/mails
         [HttpPost]
@@ -43,27 +36,21 @@ namespace TestWebApp.Controllers
         {
             Random rnd = new Random();
             email.Id = rnd.Next();
-            await emailService.SendEmailAsync(email.Recipients, email.Subject, email.Body);
-            
-            //_context.Emails.Add(email);
-            //_context.SaveChanges();
-            //await _context.SaveChangesAsync();
+            email.CreateTime = DateTime.Now;
+            try
+            {
+                await emailService.SendEmailAsync(email.Recipients, email.Subject, email.Body);
+                email.Result = "Ok";
+            }
+            catch (Exception e)
+            {
+                email.Result = "Failed";
+                email.FailedMessage = e.ToString();
+            }
+            _context.Emails.Add(email);
+            _context.SaveChanges();
 
             return Ok(email);
-            //CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
-        }
-
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

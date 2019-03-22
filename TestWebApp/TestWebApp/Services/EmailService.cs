@@ -11,12 +11,12 @@ namespace TestWebApp.Services
 
         private readonly IConfiguration _config;
 
-        private string serverHost;
-        private int serverPort;
-        private bool useSsl;
-        private string authentificationEmailLogin;
-        private string authentificationEmailPassword;
-        private string senderName;
+        private readonly string serverHost;
+        private readonly int serverPort;
+        private readonly bool useSsl;
+        private readonly string authentificationEmailLogin;
+        private readonly string authentificationEmailPassword;
+        private readonly string senderName;
 
         public EmailService(IConfiguration config)
         {
@@ -26,14 +26,13 @@ namespace TestWebApp.Services
             useSsl = Convert.ToBoolean(_config["SMTPSettings:IsSsl"]);
             authentificationEmailLogin = _config["SMTPSettings:AuthentificationEmailLogin"];
             authentificationEmailPassword = _config["SMTPSettings:AuthentificationEmailPassword"];
-            senderName = _config["SMTPSettings:SenderName"];
         }
 
         public async Task SendEmailAsync(string[] recipients, string subject, string message)
         {
             var emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("Тестовое задание Роспартнер","mrfix0r@gmail.com"));
+            emailMessage.From.Add(new MailboxAddress("Тестовое задание", authentificationEmailLogin));
             foreach (string recipient in recipients)
             {
                 emailMessage.To.Add(new MailboxAddress("", recipient));

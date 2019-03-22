@@ -10,6 +10,9 @@ using TestWebApp.Services;
 namespace TestWebApp.Controllers
 {
 
+    /// <summary>
+    /// Контроллер для обработки HTTP запросов
+    /// </summary>
     [Route("api/mails")]
     [ApiController]
     public class EmailsController : ControllerBase
@@ -18,6 +21,11 @@ namespace TestWebApp.Controllers
         private readonly MailContext _context;
         EmailService emailService;
 
+        /// <summary>
+        /// Конструктор для заполнения конфигурации и данных БД
+        /// </summary>
+        /// <param name="Configuration">Конфигурация</param>
+        /// <param name="context">Данные БД</param>
         public EmailsController(IConfiguration Configuration, MailContext context)
         {
             _configuration = Configuration;
@@ -25,14 +33,24 @@ namespace TestWebApp.Controllers
             emailService = new EmailService(_configuration);
         }
 
-        // GET api/mails
+        /// <summary>
+        /// Метод обработки GET запроса. 
+        /// </summary>
+        /// <returns>Все записи об эмейлах из БД</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Email>>> GetAllEmails()
         {
             return await _context.Emails.ToListAsync();
         }
 
-        // POST api/mails
+        /// <summary>
+        /// Метод обработчик POST запроса. 
+        /// Формирует email сообщение и выполняет его отправку.
+        /// Добавляет запись в БД.
+        /// Заполняет дату создания и результат отправки в виде поля Result: (значения Ok, Failed), а также поле FailedMessage(текст ошибки, либо null)
+        /// </summary>
+        /// <param name="email">Эмейл сформированный в POST запросе</param>
+        /// <returns>Результат задачи по отправке эмейла (эмейл дополненный новыми полями)</returns>
         [HttpPost]
         public async Task<IActionResult> PostEmailItemAsync(Email email)
         {

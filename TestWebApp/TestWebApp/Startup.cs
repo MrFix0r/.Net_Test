@@ -21,9 +21,9 @@ namespace TestWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<MailContext>(opt =>
-            opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
+            opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));    //подключение PostgreSQL
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IConfiguration>(Configuration); //передача конфигурации контроллерам
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

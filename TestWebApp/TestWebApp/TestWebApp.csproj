@@ -6,6 +6,10 @@
     <PackageId>DataAccessPostgreSqlProvider</PackageId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Admin\Source\Repos\.Net_Test\TestWebApp\TestWebApp\TestWebAppDocumentation.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>

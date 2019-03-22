@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataAccessPostgreSqlProvider</name>
+    </assembly>
+    <members>
+        <member name="T:TestWebApp.Controllers.EmailsController">
+            <summary>
+            Контроллер для обработки HTTP запросов
+            </summary>
+        </member>
+        <member name="M:TestWebApp.Controllers.EmailsController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,TestWebApp.Models.MailContext)">
+            <summary>
+            Конструктор для заполнения конфигурации и данных БД
+            </summary>
+            <param name="Configuration">Конфигурация</param>
+            <param name="context">Данные БД</param>
+        </member>
+        <member name="M:TestWebApp.Controllers.EmailsController.GetAllEmails">
+            <summary>
+            Метод обработки GET запроса. 
+            </summary>
+            <returns>Все записи об эмейлах из БД</returns>
+        </member>
+        <member name="M:TestWebApp.Controllers.EmailsController.PostEmailItemAsync(TestWebApp.Models.Email)">
+            <summary>
+            Метод обработчик POST запроса. 
+            Формирует email сообщение и выполняет его отправку.
+            Добавляет запись в БД.
+            Заполняет дату создания и результат отправки в виде поля Result: (значения Ok, Failed), а также поле FailedMessage(текст ошибки, либо null)
+            </summary>
+            <param name="email">Эмейл сформированный в POST запросе</param>
+            <returns>Результат задачи по отправке эмейла (эмейл дополненный новыми полями)</returns>
+        </member>
+        <member name="T:TestWebApp.Models.Email">
+            <summary>
+            Класс-модель эмейл сообщения
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.Id">
+            <summary>
+            Идентификатор эмейла, первичный ключ в БД
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.Subject">
+            <summary>
+            Тема эмейла
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.Body">
+            <summary>
+            Тело эмейла
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.Recipients">
+            <summary>
+            Получатели сообщения
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.CreateTime">
+            <summary>
+            Дата создания = дате обработки POST-запроса к Web сервису
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.Result">
+            <summary>
+            Результат отправки эмейла (Ok/Failed)
+            </summary>
+        </member>
+        <member name="P:TestWebApp.Models.Email.FailedMessage">
+            <summary>
+            Текст ошибки, в случае её возникновения
+            </summary>
+        </member>
+        <member name="T:TestWebApp.Models.MailContext">
+            <summary>
+            Класс контекст данных для взаимодействия с БД по средствам Entity Framework
+            </summary>
+        </member>
+        <member name="M:TestWebApp.Models.MailContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{TestWebApp.Models.MailContext})">
+            <summary>
+            Конструктор заполняющий настройки БД (TODO задать вопрос)
+            </summary>
+            <param name="options">Настройки</param>
+        </member>
+        <member name="P:TestWebApp.Models.MailContext.Emails">
+            <summary>
+            Метод для работы с моделью Email
+            </summary>
+        </member>
+        <member name="T:TestWebApp.Services.EmailService">
+            <summary>
+            Сервис отправки писем по протоколу SMTP
+            </summary>
+        </member>
+        <member name="M:TestWebApp.Services.EmailService.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Конструктор для получения конфигурации SMTP сервера
+            </summary>
+            <param name="config">Конфигурация</param>
+        </member>
+        <member name="M:TestWebApp.Services.EmailService.SendEmailAsync(System.String[],System.String,System.String)">
+            <summary>
+            Метод отправки email сообщения по средствам SMTP-клиента.
+            Конфигурация SMTP-сервера задаётся в appsettings.json
+            Email сообщение формируется по средствам внешней Open Source библиотеки MailKit
+            </summary>
+            <param name="recipients">Получатели</param>
+            <param name="subject">Тема письма</param>
+            <param name="message">Содержание письма</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

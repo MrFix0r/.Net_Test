@@ -20,17 +20,9 @@ namespace TestWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
 
-
-            //добавление привязки к БД PostgreSQL
-            //services.AddDbContext<TodoContext>(opt =>
-            //    opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddIdentity<User, IdentityRole<long>>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext, long>()
-            //    .AddDefaultTokenProviders();
-
+            services.AddEntityFrameworkNpgsql().AddDbContext<MailContext>(opt => 
+            opt.UseNpgsql(Configuration.GetConnectionString("MyWebApiConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

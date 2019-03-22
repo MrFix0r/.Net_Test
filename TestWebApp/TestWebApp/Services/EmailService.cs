@@ -16,16 +16,19 @@ namespace TestWebApp.Services
         private readonly bool useSsl;
         private readonly string authentificationEmailLogin;
         private readonly string authentificationEmailPassword;
-        private readonly string senderName;
 
         public EmailService(IConfiguration config)
         {
             _config = config;
-            serverHost = _config["SMTPSettings:ServerHost"];
-            serverPort = Convert.ToInt32(_config["SMTPSettings:ServerPort"]);
-            useSsl = Convert.ToBoolean(_config["SMTPSettings:IsSsl"]);
-            authentificationEmailLogin = _config["SMTPSettings:AuthentificationEmailLogin"];
-            authentificationEmailPassword = _config["SMTPSettings:AuthentificationEmailPassword"];
+            try
+            {
+                serverHost = _config["SMTPSettings:ServerHost"];
+                serverPort = Convert.ToInt32(_config["SMTPSettings:ServerPort"]);
+                useSsl = Convert.ToBoolean(_config["SMTPSettings:IsSsl"]);
+                authentificationEmailLogin = _config["SMTPSettings:AuthentificationEmailLogin"];
+                authentificationEmailPassword = _config["SMTPSettings:AuthentificationEmailPassword"];
+            }
+            catch (Exception) { }
         }
 
         public async Task SendEmailAsync(string[] recipients, string subject, string message)

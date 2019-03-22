@@ -41,6 +41,8 @@ namespace TestWebApp.Controllers
             email.CreateTime = DateTime.Now;
             try
             {
+                _context.Emails.Add(email);
+                _context.SaveChanges();
                 await emailService.SendEmailAsync(email.Recipients, email.Subject, email.Body);
                 email.Result = "Ok";
             }
@@ -48,10 +50,8 @@ namespace TestWebApp.Controllers
             {
                 email.Result = "Failed";
                 email.FailedMessage = e.ToString();
+                Console.WriteLine(e.ToString());
             }
-            _context.Emails.Add(email);
-            _context.SaveChanges();
-
             return Ok(email);
         }
     }

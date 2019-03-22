@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestWebApp.Models;
@@ -9,9 +10,10 @@ using TestWebApp.Models;
 namespace TestWebApp.Migrations
 {
     [DbContext(typeof(MailContext))]
-    partial class MailContextModelSnapshot : ModelSnapshot
+    [Migration("20190322103341_UpdateMigration")]
+    partial class UpdateMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

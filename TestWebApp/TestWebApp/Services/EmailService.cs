@@ -11,7 +11,7 @@ namespace TestWebApp.Services
         {
             var emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("Тестовое задание Роспартнер"));
+            emailMessage.From.Add(new MailboxAddress("Тестовое задание Роспартнер","mrfix0r@gmail.com"));
             foreach (string recipient in recipients)
             {
                 emailMessage.To.Add(new MailboxAddress("", recipient));

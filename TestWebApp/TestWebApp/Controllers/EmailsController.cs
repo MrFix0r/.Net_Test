@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TestWebApp.Models;
 using TestWebApp.Services;
 
@@ -14,14 +15,22 @@ namespace TestWebApp.Controllers
     [ApiController]
     public class EmailsController : ControllerBase
     {
-        EmailService emailService = new EmailService();
+        private IConfiguration _configuration;
+        EmailService emailService;
+
+        public EmailsController(IConfiguration Configuration, MailContext context)
+        {
+            _configuration = Configuration;
+            _context = context;
+            emailService = new EmailService(_configuration);
+        }
 
         private readonly MailContext _context;
 
-        public EmailsController(MailContext context)
-        {
-            _context = context;
-        }
+        //public EmailsController(MailContext context)
+        //{
+        //    _context = context;
+        //}
 
         // GET api/mails
         [HttpGet]

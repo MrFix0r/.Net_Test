@@ -1,12 +1,34 @@
 ﻿using MimeKit;
 using MailKit.Net.Smtp;
+using System;
 using System.Threading.Tasks;
-using TestWebApp.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace TestWebApp.Services
 {
     public class EmailService
     {
+
+        private readonly IConfiguration _config;
+
+        private string serverHost;
+        private int serverPort;
+        private bool useSsl;
+        private string authentificationEmailLogin;
+        private string authentificationEmailPassword;
+        private string senderName;
+
+        public EmailService(IConfiguration config)
+        {
+            _config = config;
+            serverHost = _config["SMTPSettings:ServerHost"];
+            serverPort = Convert.ToInt32(_config["SMTPSettings:ServerPort"]);
+            useSsl = Convert.ToBoolean(_config["SMTPSettings:IsSsl"]);
+            authentificationEmailLogin = _config["SMTPSettings:AuthentificationEmailLogin"];
+            authentificationEmailPassword = _config["SMTPSettings:AuthentificationEmailPassword"];
+            senderName = _config["SMTPSettings:SenderName"];
+        }
+
         public async Task SendEmailAsync(string[] recipients, string subject, string message)
         {
             var emailMessage = new MimeMessage();
@@ -24,9 +46,8 @@ namespace TestWebApp.Services
 
             using (var client = new SmtpClient())
             {
-                //TODO вынести в отдельный файл конфигурации
-                await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("mrfix0r@gmail.com", "qarynelffgoqaiip");
+                await client.ConnectAsync(serverHost, serverPort, useSsl);
+                await client.AuthenticateAsync(authentificationEmailLogin, authentificationEmailPassword);
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);
